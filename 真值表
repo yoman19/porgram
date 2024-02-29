@@ -1,0 +1,27 @@
+rows = [
+    (False, False),
+    (False, True),
+    (True, False),
+    (True, True)
+]
+
+# 標題行
+header = ["P", "Q", "P ∧ Q", "P ∨ Q", "P → Q", "P ← Q", "P ↔ Q"]
+
+# 打印標題
+print("\t".join(header))
+
+# 打印每一行的結果
+for row in rows:
+    p, q = row
+    result = [
+        p, q,
+        p and q,
+        p or q,
+        not p or q,
+        p or not q,
+        (not p or q) and (p or not q)
+    ]
+    # 將布林值轉換為字串，以便打印
+    result_str = [str(val) for val in result]
+    print("\t".join(result_str))
