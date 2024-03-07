@@ -1,0 +1,7 @@
+user_input = int(input("請輸入一個整數: "))
+
+# 使用選擇敘述判斷是否為偶數
+if user_input % 2 == 0:
+    print(f"{user_input} 是一個偶數。")
+else:
+    print(f"{user_input} 不是一個偶數。")
