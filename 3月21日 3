@@ -1,0 +1,18 @@
+import random
+
+questions_answers = {
+    "What is the capital of France?": "Paris",
+    "What is the largest planet in our solar system?": "Jupiter",
+    "Who wrote 'To Kill a Mockingbird'?": "Harper Lee",
+    "What element does 'O' represent on the periodic table?": "Oxygen",
+    "In what year did the Titanic sink?": "1912"
+}
+
+num_questions = 3
+
+random_questions = random.sample(list(questions_answers.items()), num_questions)
+
+print("隨機取出的問題和答案：")
+for question, answer in random_questions:
+    print(f"問題: {question}")
+    print(f"答案: {answer}\n")
