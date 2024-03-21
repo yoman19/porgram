@@ -1,0 +1,12 @@
+Spyder Editor
+
+This is a temporary script file.
+"""
+
+my_tuple = (10, 'hello', [1, 2, 3], 3.14)
+
+second_element = my_tuple[1]
+last_element = my_tuple[-1]
+
+print(f"Tuple中的第二個元素是：{second_element}")
+print(f"Tuple中的最後一個元素是：{last_element}")
