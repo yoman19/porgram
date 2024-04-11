@@ -1,0 +1,25 @@
+import random
+import math
+
+def monte_carlo_cone_surface_area(radius, height, num_samples):
+    base_area = math.pi * radius**2
+    slant_height = math.sqrt(radius**2 + height**2)
+    surface_area = base_area + math.pi * radius * slant_height
+
+    under_surface = 0
+    for _ in range(num_samples):
+        x = random.uniform(-radius, radius)
+        y = random.uniform(-radius, radius)
+        z = random.uniform(0, height)
+
+        if x**2 + y**2 <= radius**2 and z <= (slant_height - (slant_height / height) * math.sqrt(x**2 + y**2)):
+            under_surface += 1
+
+    return (under_surface / num_samples) * surface_area
+
+radius = 1
+height = 1
+num_samples = 1000000
+
+surface_area_estimate = monte_carlo_cone_surface_area(radius, height, num_samples)
+print("圓錐表面積的近似值:", surface_area_estimate)
