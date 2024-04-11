@@ -1,0 +1,25 @@
+import random
+import math
+
+def monte_carlo_integration(func, lower_bound, upper_bound, num_samples):
+    total_area = (upper_bound - lower_bound) * max(func(lower_bound), func(upper_bound))
+    under_curve = 0
+
+    for _ in range(num_samples):
+        x = random.uniform(lower_bound, upper_bound)
+        y = random.uniform(0, func(upper_bound))
+        
+        if y <= func(x):
+            under_curve += 1
+
+    return (under_curve / num_samples) * total_area
+
+def func_to_integrate(x):
+    return math.exp(x) * math.sin(x)
+
+lower_limit = 0
+upper_limit = 2 * math.pi
+num_samples = 1000000  
+
+integral_estimate = monte_carlo_integration(func_to_integrate, lower_limit, upper_limit, num_samples)
+print("積分的近似值:", integral_estimate)
