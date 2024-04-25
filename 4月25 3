@@ -1,0 +1,14 @@
+import random
+import string
+
+# 生成随机的Gmail邮箱名
+def generate_email_name(length):
+    letters_and_digits = string.ascii_letters + string.digits
+    return ''.join(random.choice(letters_and_digits) for _ in range(length))
+
+# 生成十个Gmail邮箱并隔行印出
+for _ in range(10):
+    email_length = random.randint(6, 30)
+    email_name = generate_email_name(email_length)
+    email = f"{email_name}@gmail.com"
+    print(email)
