@@ -1,0 +1,9 @@
+import random
+
+
+for _ in range(10):
+    
+    phone_number = random.randint(10000000, 99999999)
+    
+    result_phone = f"09{phone_number}"
+    print(result_phone)
