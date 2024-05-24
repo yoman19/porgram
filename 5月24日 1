@@ -1,0 +1,67 @@
+import os
+import tkinter as tk
+from tkinter import filedialog, messagebox, simpledialog
+
+def change_directory():
+    dir_path = filedialog.askdirectory()
+    if dir_path:
+        os.chdir(dir_path)
+        dir_label.config(text=os.getcwd())
+        list_directory()
+
+def list_directory():
+    dir_listbox.delete(0, tk.END)
+    items = os.listdir(os.getcwd())
+    for item in items:
+        if os.path.isdir(item):
+            dir_listbox.insert(tk.END, f'資料夾: {item}')
+        else:
+            dir_listbox.insert(tk.END, f'檔案: {item}')
+
+def show_file_content():
+    file_path = filedialog.askopenfilename()
+    if file_path:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            content = file.read()
+            messagebox.showinfo("檔案內容", content)
+
+def save_text_to_file():
+    file_name = simpledialog.askstring("輸入檔名", "請輸入檔名（包含擴展名，如 example.txt）:")
+    if file_name:
+        text_content = simpledialog.askstring("輸入內容", "請輸入要寫入文件的文本:")
+        if text_content:
+            with open(file_name, 'w', encoding='utf-8') as file:
+                file.write(text_content)
+            list_directory()
+            messagebox.showinfo("成功", f"文件 '{file_name}' 已成功創建並寫入。")
+
+# 創建主窗口
+root = tk.Tk()
+root.title("文件操作範例")
+
+# 更改目錄按鈕
+change_dir_button = tk.Button(root, text="更改目錄", command=change_directory)
+change_dir_button.pack()
+
+# 目錄標籤
+dir_label = tk.Label(root, text=os.getcwd())
+dir_label.pack()
+
+# 列出目錄按鈕
+list_dir_button = tk.Button(root, text="列出目錄", command=list_directory)
+list_dir_button.pack()
+
+# 目錄列表框
+dir_listbox = tk.Listbox(root, width=50)
+dir_listbox.pack()
+
+# 顯示文件內容按鈕
+show_file_button = tk.Button(root, text="顯示文件內容", command=show_file_content)
+show_file_button.pack()
+
+# 保存文本到文件按鈕
+save_text_button = tk.Button(root, text="保存文本到文件", command=save_text_to_file)
+save_text_button.pack()
+
+# 啟動主循環
+root.mainloop()
